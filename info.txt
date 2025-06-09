@@ -1,0 +1,149 @@
+1.npm create vite@latest
+    frontend->react->js
+2.npm install(to install packages for this project)
+3.npm install react-router-dom react toastify
+
+//now to configure tailwind
+    1. npm install -D tailwindcss@^3.4.1 postcss autoprefixer
+    2. npx tailwindcss init -p
+
+    //now two file gets open 
+    1.tailwind.config.js  ..add
+        /** @type {import('tailwindcss').Config} */
+        export default {
+        content: [
+            "./index.html",
+            "./src/**/*.{js,ts,jsx,tsx}",
+        ],
+        theme: {
+            extend: {},
+        },
+        plugins: [],
+        }
+    2.index.css  ..add
+        @tailwind base;
+        @tailwind components;
+        @tailwind utilities;
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+) // here reactDom is placed so that it can route to differnt pages
+
+TAILWIND 
+  using Tailwind CSS, you apply utility classes directly to your HTML or JSX elements using the className attribute (in React)
+    ->cursor-pointer
+        Changes the mouse cursor to a pointer (hand icon) when hovering over the element.
+    ->hidden:	Hide the element by default.
+    ->text-sm:	Set font size to small.
+    ->text-gray-500:	Set text color to a medium gray shade.
+    ->sm:flex:	Display the element as flex on small (≥640px) screens and larger.
+    ->gap-5:	Add space between child elements (1.25rem gap).
+    ->justify-between:	Horizontally distributes items with space between them.
+    ->font-medium:	Sets the font weight to medium (500).
+    ->py-5:	Applies vertical padding (padding-top and padding-bottom) of 1.25rem.
+    ->items-center:	Vertically centers items inside the flex container.
+    ->justify-between:	Horizontally distributes items with space between them.
+
+eg::className='group-hover:block hidden absolute dropdown-menu right-0 pt-4'
+
+| Class               | Meaning                                                                                          |
+| ------------------- | ------------------------------------------------------------------------------------------------ |
+| `hidden`            | By default, this element is hidden.                                                              |
+| `group-hover:block` | Becomes visible (`display: block`) when the **parent with class `group`** is hovered.            |
+| `absolute`          | Takes the element out of the normal flow for **positioning**.                                    |
+| `dropdown-menu`     | Not a Tailwind class by default — likely a **custom class** for styling or JavaScript targeting. |
+| `right-0`           | Positions the element at the **right edge** of its relatively-positioned parent.                 |
+| `pt-4`              | Adds **padding-top: 1rem (16px)**. Useful to give space from a button or icon.                   |
+
+Colors & Background
+
+| Class                    | Use for          |
+| ------------------------ | ---------------- |
+| `bg-blue-500`            | Background color |
+| `text-red-600`           | Text color       |
+| `hover:bg-green-700`     | Hover background |
+| `border border-gray-400` | Add border       |
+
+Width & Height
+
+| Class      | Meaning                   |
+| ---------- | ------------------------- |
+| `w-full`   | Full width of parent      |
+| `h-screen` | Full height of the screen |
+| `w-1/2`    | Half width                |
+| `max-w-lg` | Max width = large         |
+
+Flexbox & Layout
+
+| Class             | Meaning                       |
+| ----------------- | ----------------------------- |
+| `flex`            | Make element a flex container |
+| `flex-col`        | Stack children vertically     |
+| `items-center`    | Align items vertically center |
+| `justify-between` | Space between children        |
+
+->In React, a hook is a special function that lets you “hook into” React features like state, lifecycle, and context inside functional components.
+| Hook         | Purpose                                     |
+| ------------ | ------------------------------------------- |
+| `useState`   | Add state to functional components          |
+| `useEffect`  | Run side effects like API calls or timeouts |
+| `useContext` | Access context values                       |
+| `useRef`     | Access DOM elements or keep mutable refs    |
+
+->useEffect is a React Hook that lets you synchronize a component with an external system.
+  useEffect is a Hook, so you can only call it at the top level of your component or your own Hooks. You can’t call it inside loops or conditions.
+  useEffect(() => {
+    // code to run
+    }, [dependencies]);
+    The first argument is a function (the side-effect).
+
+    The second argument is a dependency array. It tells React when to re-run the effect.
+    eg: Run when a state/prop changes
+            useEffect(() => {
+            console.log("Count changed");
+            }, [count]);
+
+(e):
+This is the event object, usually passed from an event handler like onChange in a checkbox or input field.
+
+->  setSubCategory(prev => [...prev, e.target.value])
+    If it's not already present, we add the new subcategory:
+
+    ...prev spreads the current items.
+
+    e.target.value adds the new value at the end.
+
+ASYNC AWAIT
+    Async and Await in JavaScript is used to simplify handling asynchronous operations using promises. By enabling asynchronous code to appear synchronous, they enhance code readability and make it easier to manage complex asynchronous flows.
+    syntax:
+        async function functionName() {
+            try {
+                const result = await someAsyncFunction();
+                console.log(result);
+            } catch (error) {
+                console.error("Error:", error.message);
+            }
+        }
+    The async function allows us to write promise-based code as if it were synchronous. This ensures that the execution thread is not blocked. Async functions always return a promise. If a value is returned that is not a promise, JavaScript automatically wraps it in a resolved promise.
+    The await keyword is used to wait for a promise to resolve. It can only be used within an async block. Await makes the code wait until the promise returns a result, allowing for cleaner and more manageable asynchronous code.
+
+
+after frontend completes backend
+1.npm init to start
+2.npm i cors dotenv express jsonwebtoken mongoose multer nodemon razorpay stripe validator cloudinary bcrypt        
+     to install all the dependencies
+     ->cors: allow frontend ib to connect backend
+     ->dotenv: use env variables
+     ->exp: for API
+     ->jsonwebtoken: for user authentication
+     ->mongoose: db connectiivty
+     ->multer: to store images in cloudinary
+     ->nodemon: to restart backend automatically
+     ->validator:to check validity of dat from user
+     ->bcrypt:encrypt user data
+3. in .json file add
+    a.type : module // for import
+    b.in script add server: nodemon server.js //to run without reload
+
