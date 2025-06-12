@@ -4,7 +4,11 @@ const productSchema = new mongoose.Schema({
     name:{type:String, required:true},
     description: {type:String,required:true},
     price: {type:Number,required:true},
-    image: {type:Number,required:true},
+    image: {
+    type: [String],
+    required: true,
+    validate: [arr => arr.length > 0, 'At least one image is required']
+    },
     category: {type:String,required:true},
     subCategory: {type:String,required:true},
     sizes: {type:Array,required:true},

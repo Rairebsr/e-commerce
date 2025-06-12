@@ -147,3 +147,62 @@ after frontend completes backend
     a.type : module // for import
     b.in script add server: nodemon server.js //to run without reload
 
+Steps to Auto-Push (After First Time):
+Stage the changes:
+You can do this in VS Code Source Control tab by clicking + (or use command line):
+
+
+        git add .
+        Commit the changes:
+        Provide a meaningful message:
+
+
+        git commit -m "Your message here"
+        Push the changes:
+        Since you've already set upstream with -u, you can now just:
+
+
+        git push
+
+##########
+let imageUrl = await Promise.all(
+            images.map(async(item)=>{
+                let result = await cloudinary.uploader.upload(item.path,{resource_type:'image'})
+                return result.secure_url
+            })
+        )
+##########
+    1.images.map(...)
+        You are mapping over an array called images.
+
+        Each item is expected to have a .path (usually a file path from multer or similar middleware).
+
+    2.async (item) => { ... }
+        The function inside .map() is asynchronous because cloudinary.uploader.upload() returns a Promise.
+
+    3.await cloudinary.uploader.upload(item.path, {resource_type: 'image'})
+        For each image, you're uploading it to Cloudinary.
+
+        {resource_type: 'image'} tells Cloudinary that you're uploading an image (not video, raw file, etc).
+
+        It returns a response object with many properties (e.g. secure_url, public_id, etc).
+
+    4.return result.secure_url
+        From each upload result, you're keeping only the secure URL of the uploaded image.
+
+    5.Promise.all(...)
+        Since .map() returns an array of Promises (because of the async function), you wrap it in Promise.all(...).
+
+        This ensures all image uploads are completed before imageUrl is resolved.
+
+        imageUrl will then be an array of all secure URLs.
+
+we have made all the fn in productcontroller.js file (add,remove) authenticated as now they can only be accessed by admin now to build the admin pages
+set up new folder (open in integrated form in terminal)  
+now run:
+1.npm create vite@latest . -> react -> js
+2.npm install (ti install node module containig packages)
+3.npm install axios react-router-dom react-toastify
+    axios : to make api call
+    react-router-dom: create routes
+
