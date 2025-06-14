@@ -154,7 +154,7 @@ const ShopContextProvider = (props)=> {    {/*Creating a Context Provider Compon
     const val ={
         products,currency,delivery_fee,
         search,setSearch,showSearch,setShowSearch,
-        carItems,addToCart,
+        carItems,addToCart,setCartItems,
         getCartCount,updateQuantity,
         getCartAmount,navigate,backendUrl,
         setToken,token
